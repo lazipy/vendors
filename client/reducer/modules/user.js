@@ -17,6 +17,7 @@ const GUEST_STATUS = 1;
 const MEMBER_STATUS = 2;
 // Reducer user
 const initialState = {
+  visitorId: 13,
   isLogin: false,
   canRegister: true,
   isLDAP: false,

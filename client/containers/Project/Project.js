@@ -16,6 +16,8 @@ const plugin = require('client/plugin.js');
 @connect(
   state => {
     return {
+      visitorId: state.user.visitorId,
+      uid: state.user.uid,
       curProject: state.project.currProject,
       currGroup: state.group.currGroup
     };
@@ -28,6 +30,8 @@ const plugin = require('client/plugin.js');
 )
 export default class Project extends Component {
   static propTypes = {
+    visitorId: PropTypes.number,
+    uid: PropTypes.number,
     match: PropTypes.object,
     curProject: PropTypes.object,
     getProject: PropTypes.func,
@@ -76,13 +80,15 @@ export default class Project extends Component {
 
   render() {
     const { match, location } = this.props;
-    let routers = {
+    let routers = this.props.uid !== this.props.visitorId ? ({
       interface: { name: '接口', path: '/project/:id/interface/:action', component: Interface },
       activity: { name: '动态', path: '/project/:id/activity', component: Activity },
       data: { name: '数据管理', path: '/project/:id/data', component: ProjectData },
       members: { name: '成员管理', path: '/project/:id/members', component: ProjectMember },
       setting: { name: '设置', path: '/project/:id/setting', component: Setting }
-    };
+    }) : ({
+      interface: { name: '接口', path: '/project/:id/interface/:action', component: Interface }
+    });
 
     plugin.emitHook('sub_nav', routers);
 

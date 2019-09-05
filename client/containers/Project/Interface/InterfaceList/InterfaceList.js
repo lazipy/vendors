@@ -21,6 +21,8 @@ const limit = 20;
 @connect(
   state => {
     return {
+      visitorId: state.user.visitorId,
+      uid: state.user.uid,
       curData: state.inter.curdata,
       curProject: state.project.currProject,
       catList: state.inter.list,
@@ -51,6 +53,8 @@ class InterfaceList extends Component {
   }
 
   static propTypes = {
+    visitorId: PropTypes.number,
+    uid: PropTypes.number,
     curData: PropTypes.object,
     catList: PropTypes.array,
     match: PropTypes.object,
@@ -364,15 +368,20 @@ class InterfaceList extends Component {
         <h2 className="interface-title" style={{ display: 'inline-block', margin: 0 }}>
           {intername ? intername : '全部接口'}共 ({total}) 个
         </h2>
-
-        <Button
-          style={{ float: 'right' }}
-          disabled={isDisabled}
-          type="primary"
-          onClick={() => this.setState({ visible: true })}
-        >
-          添加接口
-        </Button>
+        {
+          this.props.uid !== this.props.visitorId ? (
+            <Button
+              style={{ float: 'right' }}
+              disabled={isDisabled}
+              type="primary"
+              onClick={() => this.setState({ visible: true })}
+            >
+              添加接口
+            </Button>
+          ) : (
+            ''
+          )
+        }
         <div style={{ marginTop: '10px' }}>
           <Label onChange={value => this.handleChangeInterfaceCat(value, intername)} desc={desc} />
         </div>

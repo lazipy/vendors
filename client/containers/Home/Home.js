@@ -325,6 +325,8 @@ HomeGuest.propTypes = {
 
 @connect(
   state => ({
+    visitorId: state.user.visitorId,
+    uid: state.user.uid,
     login: state.user.isLogin
   }),
   {
@@ -338,13 +340,15 @@ class Home extends Component {
   }
 
   componentWillMount() {
-    if (this.props.login) {
+    if (this.props.login && this.props.uid !== this.props.visitorId) {
       this.props.history.push('/group/261');
     }
   }
 
   componentDidMount() {}
   static propTypes = {
+    visitorId: PropTypes.number,
+    uid: PropTypes.number,
     introList: PropTypes.array,
     login: PropTypes.bool,
     history: PropTypes.object,

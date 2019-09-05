@@ -14,6 +14,8 @@ const TabPane = Tabs.TabPane;
 @connect(
   state => {
     return {
+      visitorId: state.user.visitorId,
+      uid: state.user.uid,
       curdata: state.inter.curdata,
       list: state.inter.list,
       editStatus: state.inter.editStatus
@@ -25,6 +27,8 @@ const TabPane = Tabs.TabPane;
 )
 class Content extends Component {
   static propTypes = {
+    visitorId: PropTypes.number,
+    uid: PropTypes.number,
     match: PropTypes.object,
     list: PropTypes.array,
     curdata: PropTypes.object,
@@ -111,7 +115,7 @@ class Content extends Component {
         this.props.curdata.title + '-' + this.title;
     }
 
-    let InterfaceTabs = {
+    let InterfaceTabs = this.props.uid !== this.props.visitorId ? ({
       view: {
         component: View,
         name: '预览'
@@ -124,7 +128,12 @@ class Content extends Component {
         component: Run,
         name: '运行'
       }
-    };
+    }) : ({
+      view: {
+        component: View,
+        name: '预览'
+      }
+    });
 
     plugin.emitHook('interface_tab', InterfaceTabs);
 

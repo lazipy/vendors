@@ -42,6 +42,8 @@ const ColModalForm = Form.create()(props => {
 @connect(
   state => {
     return {
+      visitorId: state.user.visitorId,
+      uid: state.user.uid,
       interfaceColList: state.interfaceCol.interfaceColList,
       currCase: state.interfaceCol.currCase,
       isRander: state.interfaceCol.isRander,
@@ -65,6 +67,8 @@ const ColModalForm = Form.create()(props => {
 @withRouter
 export default class InterfaceColMenu extends Component {
   static propTypes = {
+    visitorId: PropTypes.number,
+    uid: PropTypes.number,
     match: PropTypes.object,
     interfaceColList: PropTypes.array,
     fetchInterfaceColList: PropTypes.func,
@@ -517,16 +521,22 @@ export default class InterfaceColMenu extends Component {
       <div>
         <div className="interface-filter">
           <Input placeholder="搜索测试集合" onChange={this.filterCol} />
-          <Tooltip placement="bottom" title="添加集合">
-            <Button
-              type="primary"
-              style={{ marginLeft: '16px' }}
-              onClick={() => this.showColModal('add')}
-              className="btn-filter"
-            >
-              添加集合
-            </Button>
-          </Tooltip>
+          {
+            this.props.uid !== this.props.visitorId ? (
+              <Tooltip placement="bottom" title="添加集合">
+                <Button
+                  type="primary"
+                  style={{ marginLeft: '16px' }}
+                  onClick={() => this.showColModal('add')}
+                  className="btn-filter"
+                >
+                  添加集合
+                </Button>
+              </Tooltip>
+            ) : (
+              ''
+            )
+          }
         </div>
         <div className="tree-wrapper" style={{ maxHeight: parseInt(document.body.clientHeight) - headHeight + 'px'}}>
           <Tree

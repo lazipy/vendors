@@ -33,28 +33,30 @@ plugin.emitHook('header_menu', HeaderMenu);
 
 const MenuUser = props => (
   <Menu theme="dark" className="user-menu">
-    {Object.keys(HeaderMenu).map(key => {
-      let item = HeaderMenu[key];
-      const isAdmin = props.role === 'admin';
-      if (item.adminFlag && !isAdmin) {
-        return null;
-      }
-      return (
-        <Menu.Item key={key}>
-          {item.name === '个人中心' ? (
-            <Link to={item.path + `/${props.uid}`}>
-              <Icon type={item.icon} />
-              {item.name}
-            </Link>
-          ) : (
-            <Link to={item.path}>
-              <Icon type={item.icon} />
-              {item.name}
-            </Link>
-          )}
-        </Menu.Item>
-      );
-    })}
+    {
+      Object.keys(HeaderMenu).map(key => {
+        let item = HeaderMenu[key];
+        const isAdmin = props.role === 'admin';
+        if (item.adminFlag && !isAdmin) {
+          return null;
+        }
+        return (
+          <Menu.Item key={key}>
+            {item.name === '个人中心' ? (
+              <Link to={item.path + `/${props.uid}`}>
+                <Icon type={item.icon} />
+                {item.name}
+              </Link>
+            ) : (
+              <Link to={item.path}>
+                <Icon type={item.icon} />
+                {item.name}
+              </Link>
+            )}
+          </Menu.Item>
+        );
+      })
+    }
     <Menu.Item key="9">
       <a onClick={props.logout}>
         <Icon type="logout" />退出
@@ -99,6 +101,7 @@ MenuUser.propTypes = {
   msg: PropTypes.string,
   role: PropTypes.string,
   uid: PropTypes.number,
+  visitorId: PropTypes.number,
   relieveLink: PropTypes.func,
   logout: PropTypes.func
 };
@@ -110,38 +113,50 @@ const ToolUser = props => {
       <li className="toolbar-li item-search">
         <Srch groupList={props.groupList} />
       </li>
-      <Popover
-        overlayClassName="popover-index"
-        content={<GuideBtns />}
-        title={tipFollow}
-        placement="bottomRight"
-        arrowPointAtCenter
-        visible={props.studyTip === 1 && !props.study}
-      >
-        <Tooltip placement="bottom" title={'我的关注'}>
-          <li className="toolbar-li">
-            <Link to="/follow">
-              <Icon className="dropdown-link" style={{ fontSize: 16 }} type="star" />
-            </Link>
-          </li>
-        </Tooltip>
-      </Popover>
-      <Popover
-        overlayClassName="popover-index"
-        content={<GuideBtns />}
-        title={tipAdd}
-        placement="bottomRight"
-        arrowPointAtCenter
-        visible={props.studyTip === 2 && !props.study}
-      >
-        <Tooltip placement="bottom" title={'新建项目'}>
-          <li className="toolbar-li">
-            <Link to="/add-project">
-              <Icon className="dropdown-link" style={{ fontSize: 16 }} type="plus-circle" />
-            </Link>
-          </li>
-        </Tooltip>
-      </Popover>
+      {
+        props.uid !== props.visitorId ? (
+          <Popover
+            overlayClassName="popover-index"
+            content={<GuideBtns />}
+            title={tipFollow}
+            placement="bottomRight"
+            arrowPointAtCenter
+            visible={props.studyTip === 1 && !props.study}
+          >
+            <Tooltip placement="bottom" title={'我的关注'}>
+              <li className="toolbar-li">
+                <Link to="/follow">
+                  <Icon className="dropdown-link" style={{ fontSize: 16 }} type="star" />
+                </Link>
+              </li>
+            </Tooltip>
+          </Popover>
+        ) : (
+          ''
+        )
+      }
+      {
+        props.uid !== props.visitorId ? (
+          <Popover
+            overlayClassName="popover-index"
+            content={<GuideBtns />}
+            title={tipAdd}
+            placement="bottomRight"
+            arrowPointAtCenter
+            visible={props.studyTip === 2 && !props.study}
+          >
+            <Tooltip placement="bottom" title={'新建项目'}>
+              <li className="toolbar-li">
+                <Link to="/add-project">
+                  <Icon className="dropdown-link" style={{ fontSize: 16 }} type="plus-circle" />
+                </Link>
+              </li>
+            </Tooltip>
+          </Popover>
+        ) : (
+          ''
+        )
+      }
       <Popover
         overlayClassName="popover-index"
         content={<GuideBtns isLast={true} />}
@@ -158,32 +173,39 @@ const ToolUser = props => {
           </li>
         </Tooltip>
       </Popover>
-      <li className="toolbar-li">
-        <Dropdown
-          placement="bottomRight"
-          trigger={['click']}
-          overlay={
-            <MenuUser
-              user={props.user}
-              msg={props.msg}
-              uid={props.uid}
-              role={props.role}
-              relieveLink={props.relieveLink}
-              logout={props.logout}
-            />
-          }
-        >
-          <a className="dropdown-link">
-            <span className="avatar-image">
-              <img src={imageUrl} />
-            </span>
-            {/*props.imageUrl? <Avatar src={props.imageUrl} />: <Avatar src={`/api/user/avatar?uid=${props.uid}`} />*/}
-            <span className="name">
-              <Icon type="down" />
-            </span>
-          </a>
-        </Dropdown>
-      </li>
+      {
+        props.uid !== props.visitorId ? (
+          <li className="toolbar-li">
+            <Dropdown
+              placement="bottomRight"
+              trigger={['click']}
+              overlay={
+                <MenuUser
+                  user={props.user}
+                  msg={props.msg}
+                  uid={props.uid}
+                  visitorId={props.visitorId}
+                  role={props.role}
+                  relieveLink={props.relieveLink}
+                  logout={props.logout}
+                />
+              }
+            >
+              <a className="dropdown-link">
+                <span className="avatar-image">
+                  <img src={imageUrl} />
+                </span>
+                {/*props.imageUrl? <Avatar src={props.imageUrl} />: <Avatar src={`/api/user/avatar?uid=${props.uid}`} />*/}
+                <span className="name">
+                  <Icon type="down" />
+                </span>
+              </a>
+            </Dropdown>
+          </li>
+        ) : (
+          ''
+        )
+      }
     </ul>
   );
 };
@@ -192,6 +214,7 @@ ToolUser.propTypes = {
   msg: PropTypes.string,
   role: PropTypes.string,
   uid: PropTypes.number,
+  visitorId: PropTypes.number,
   relieveLink: PropTypes.func,
   logout: PropTypes.func,
   groupList: PropTypes.array,
@@ -204,6 +227,7 @@ ToolUser.propTypes = {
   state => {
     return {
       user: state.user.userName,
+      visitorId: state.user.visitorId,
       uid: state.user.uid,
       msg: null,
       role: state.user.role,
@@ -231,6 +255,7 @@ export default class HeaderCom extends Component {
     user: PropTypes.string,
     msg: PropTypes.string,
     uid: PropTypes.number,
+    visitorId: PropTypes.number,
     role: PropTypes.string,
     login: PropTypes.bool,
     relieveLink: PropTypes.func,
@@ -293,7 +318,7 @@ export default class HeaderCom extends Component {
   };
 
   render() {
-    const { login, user, msg, uid, role, studyTip, study, imageUrl } = this.props;
+    const { login, user, msg, uid, visitorId, role, studyTip, study, imageUrl } = this.props;
     return (
       <Header className="header-box m-header">
         <div className="content g-row">
@@ -309,9 +334,9 @@ export default class HeaderCom extends Component {
             className="user-toolbar"
             style={{ position: 'relative', zIndex: this.props.studyTip > 0 ? 3 : 1 }}
           >
-            {login ? (
+            {login && uid !== visitorId ? (
               <ToolUser
-                {...{ studyTip, study, user, msg, uid, role, imageUrl }}
+                {...{ studyTip, study, user, msg, uid, visitorId, role, imageUrl }}
                 relieveLink={this.relieveLink}
                 logout={this.logout}
               />

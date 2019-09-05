@@ -28,6 +28,8 @@ const headHeight = 240; // menu顶部到网页顶部部分的高度
 @connect(
   state => {
     return {
+      visitorId: state.user.visitorId,
+      uid: state.user.uid,
       list: state.inter.list,
       inter: state.inter.curdata,
       curProject: state.project.currProject,
@@ -50,6 +52,8 @@ class InterfaceMenu extends Component {
     match: PropTypes.object,
     inter: PropTypes.object,
     projectId: PropTypes.string,
+    visitorId: PropTypes.number,
+    uid: PropTypes.number,
     list: PropTypes.array,
     fetchInterfaceListMenu: PropTypes.func,
     curProject: PropTypes.object,
@@ -367,13 +371,19 @@ class InterfaceMenu extends Component {
     const searchBox = (
       <div className="interface-filter">
         <Input onChange={this.onFilter} value={this.state.filter} placeholder="搜索接口" />
-        <Button
-          type="primary"
-          onClick={() => this.changeModal('add_cat_modal_visible', true)}
-          className="btn-filter"
-        >
-          添加分类
-        </Button>
+        {
+          this.props.uid !== this.props.visitorId ? (
+            <Button
+              type="primary"
+              onClick={() => this.changeModal('add_cat_modal_visible', true)}
+              className="btn-filter"
+            >
+              添加分类
+            </Button>
+          ) : (
+            ''
+          )
+        }
         {this.state.visible ? (
           <Modal
             title="添加接口"

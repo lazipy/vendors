@@ -2,16 +2,20 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { changeMenuItem } from '../reducer/modules/menu';
+import { loginActions, logoutActions } from '../reducer/modules/user';
 
 export function requireAuthentication(Component) {
   return @connect(
     state => {
       return {
+        visitorId: state.user.visitorId,
+        uid: state.user.uid,
         isAuthenticated: state.user.isLogin
       };
     },
     {
-      changeMenuItem
+      changeMenuItem,
+      loginActions, logoutActions
     }
   )
   class AuthenticatedComponent extends React.PureComponent {
@@ -19,11 +23,15 @@ export function requireAuthentication(Component) {
       super(props);
     }
     static propTypes = {
+      visitorId: PropTypes.number,
+      uid: PropTypes.number,
       isAuthenticated: PropTypes.bool,
       location: PropTypes.object,
       dispatch: PropTypes.func,
       history: PropTypes.object,
-      changeMenuItem: PropTypes.func
+      changeMenuItem: PropTypes.func,
+      loginActions: PropTypes.func,
+      logoutActions: PropTypes.func
     };
     componentWillMount() {
       this.checkAuth();
@@ -31,10 +39,17 @@ export function requireAuthentication(Component) {
     componentWillReceiveProps() {
       this.checkAuth();
     }
-    checkAuth() {
-      if (!this.props.isAuthenticated) {
-        this.props.history.push('/');
+    async checkAuth() {
+      const pathname = this.props.location.pathname
+      const isOpenPage = pathname.includes('project')
+
+      if (!this.props.isAuthenticated && isOpenPage) {
+        await this.props.loginActions({ email: '877286986@qq.com', password: '123456' })
+      } else if (!isOpenPage && this.props.uid === this.props.visitorId) {
+        this.props.history.replace('/');
         this.props.changeMenuItem('/');
+        await this.props.logoutActions();
+
       }
     }
     render() {

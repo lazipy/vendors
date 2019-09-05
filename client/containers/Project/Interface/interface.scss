@@ -56,17 +56,13 @@
     width: 100%;
   }
   .interface-filter {
+    display: flex;
     padding: 12px 16px;
-    padding-right: 110px;
     line-height: 32px;
     background-color: #ddd;
     position: relative;
   }
   .btn-filter {
-    position: absolute;
-    right: 16px;
-    top: 50%;
-    transform: translateY(-50%);
   }
   .ant-tree li .ant-tree-node-content-wrapper {
     width: calc(100% - 28px);
