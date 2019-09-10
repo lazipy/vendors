@@ -34,6 +34,8 @@ Thumbs.db
 # *.tar
 # *.tar.gz
 
+node_modules/*
+
 runtime/
 /prd/
 /dev/

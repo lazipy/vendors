@@ -8,6 +8,7 @@ export function requireAuthentication(Component) {
   return @connect(
     state => {
       return {
+        defaultProjectId: state.project.defaultProjectId,
         visitorId: state.user.visitorId,
         uid: state.user.uid,
         isAuthenticated: state.user.isLogin
@@ -23,6 +24,7 @@ export function requireAuthentication(Component) {
       super(props);
     }
     static propTypes = {
+      defaultProjectId: PropTypes.number,
       visitorId: PropTypes.number,
       uid: PropTypes.number,
       isAuthenticated: PropTypes.bool,
@@ -46,10 +48,7 @@ export function requireAuthentication(Component) {
       if (!this.props.isAuthenticated && isOpenPage) {
         await this.props.loginActions({ email: '877286986@qq.com', password: '123456' })
       } else if (!isOpenPage && this.props.uid === this.props.visitorId) {
-        this.props.history.replace('/');
-        this.props.changeMenuItem('/');
-        await this.props.logoutActions();
-
+        this.props.history.replace('/project/' + this.props.defaultProjectId);
       }
     }
     render() {

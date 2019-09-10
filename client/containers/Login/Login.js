@@ -2,7 +2,7 @@ import React, { PureComponent as Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Form, Button, Input, Icon, message, Radio } from 'antd';
-import { loginActions, loginLdapActions } from '../../reducer/modules/user';
+import { loginActions, loginLdapActions, logoutActions } from '../../reducer/modules/user';
 import { withRouter } from 'react-router';
 const FormItem = Form.Item;
 const RadioGroup = Radio.Group;
@@ -26,7 +26,8 @@ const changeHeight = {
   },
   {
     loginActions,
-    loginLdapActions
+    loginLdapActions,
+    logoutActions
   }
 )
 @withRouter
@@ -43,6 +44,7 @@ class Login extends Component {
     history: PropTypes.object,
     loginActions: PropTypes.func,
     loginLdapActions: PropTypes.func,
+    logoutActions: PropTypes.func,
     isLDAP: PropTypes.bool
   };
 
@@ -71,6 +73,7 @@ class Login extends Component {
   };
 
   componentDidMount() {
+    this.props.logoutActions()
     //Qsso.attach('qsso-login','/api/user/login_by_token')
     console.log('isLDAP', this.props.isLDAP);
   }

@@ -52,11 +52,14 @@
     box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
   }
   .login-title {
+    height: .34rem;
+    margin-bottom: .12rem;
     text-align: center;
-    padding-top: .5rem;
     font-size: .4rem;
     font-weight: 200;
     color: #2e2e5a;
+    background: url("../../images/logo.png") no-repeat center center;
+    background-size: contain;
   }
   .svg {
     animation: spin 5s linear infinite;

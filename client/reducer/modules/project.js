@@ -24,6 +24,7 @@ const CHANGE_MEMBER_EMAIL_NOTICE = 'yapi/project/CHANGE_MEMBER_EMAIL_NOTICE';
 const GET_SWAGGER_URL_DATA = 'yapi/project/GET_SWAGGER_URL_DATA'
 // Reducer
 const initialState = {
+  defaultProjectId: 10,
   isUpdateModalShow: false,
   handleUpdateIndex: -1,
   projectList: [],

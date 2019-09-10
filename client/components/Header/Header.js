@@ -286,7 +286,7 @@ export default class HeaderCom extends Component {
       .logoutActions()
       .then(res => {
         if (res.payload.data.errcode == 0) {
-          this.props.history.push('/');
+          this.props.history.push('/login');
           this.props.changeMenuItem('/');
           message.success('退出成功! ');
         } else {
@@ -334,12 +334,20 @@ export default class HeaderCom extends Component {
             className="user-toolbar"
             style={{ position: 'relative', zIndex: this.props.studyTip > 0 ? 3 : 1 }}
           >
-            {login && uid !== visitorId ? (
-              <ToolUser
-                {...{ studyTip, study, user, msg, uid, visitorId, role, imageUrl }}
-                relieveLink={this.relieveLink}
-                logout={this.logout}
-              />
+            {login ? (
+              uid !== visitorId ? (
+                <ToolUser
+                  {...{ studyTip, study, user, msg, uid, visitorId, role, imageUrl }}
+                  relieveLink={this.relieveLink}
+                  logout={this.logout}
+                />
+              ) : (
+                <ul>
+                  <li className="toolbar-li login">
+                    <Link to="/login">登录</Link>
+                  </li>
+                </ul>
+              )
             ) : (
               ''
             )}
