@@ -205,7 +205,7 @@ class InterfaceList extends Component {
       return {text: item.name, value: item.name};
     });
 
-    const columns = [
+    const columns = this.props.uid !== this.props.visitorId ? [
       {
         title: '接口名称',
         dataIndex: 'title',
@@ -303,6 +303,85 @@ class InterfaceList extends Component {
           }
         ],
         onFilter: (value, record) => record.status.indexOf(value) === 0
+      },
+      {
+        title: 'tag',
+        dataIndex: 'tag',
+        key: 'tag',
+        width: 14,
+        render: text => {
+          let textMsg = text.length > 0 ? text.join('\n') : '未设置';
+          return <div className="table-desc">{textMsg}</div>;
+        },
+        filters: tagFilter,
+        onFilter: (value, record) => {
+          return record.tag.indexOf(value) >= 0;
+        }
+      }
+    ] : [
+      {
+        title: '接口名称',
+        dataIndex: 'title',
+        key: 'title',
+        width: 30,
+        render: (text, item) => {
+          return (
+            <Link to={'/project/' + item.project_id + '/interface/api/' + item._id}>
+              <span className="path">{text}</span>
+            </Link>
+          );
+        }
+      },
+      {
+        title: '接口路径',
+        dataIndex: 'path',
+        key: 'path',
+        width: 50,
+        render: (item, record) => {
+          const path = this.props.curProject.basepath + item;
+          let methodColor =
+            variable.METHOD_COLOR[record.method ? record.method.toLowerCase() : 'get'] ||
+            variable.METHOD_COLOR['get'];
+          return (
+            <div>
+              <span
+                style={{ color: methodColor.color, backgroundColor: methodColor.bac }}
+                className="colValue"
+              >
+                {record.method}
+              </span>
+              <Tooltip title="开放接口" placement="topLeft">
+                <span>{record.api_opened && <Icon className="opened" type="eye-o" />}</span>
+              </Tooltip>
+              <Tooltip title={path} placement="topLeft" overlayClassName="toolTip">
+                <span className="path">{path}</span>
+              </Tooltip>
+            </div>
+          );
+        }
+      },
+      {
+        title: '接口分类',
+        dataIndex: 'catid',
+        key: 'catid',
+        width: 28,
+        render: (item, record) => {
+          return (
+            <Select
+              value={item + ''}
+              className="select path"
+              onChange={catid => this.changeInterfaceCat(record._id, catid)}
+            >
+              {this.props.catList.map(cat => {
+                return (
+                  <Option key={cat.id + ''} value={cat._id + ''}>
+                    <span>{cat.name}</span>
+                  </Option>
+                );
+              })}
+            </Select>
+          );
+        }
       },
       {
         title: 'tag',

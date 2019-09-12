@@ -135,7 +135,9 @@ class Content extends Component {
       }
     });
 
-    plugin.emitHook('interface_tab', InterfaceTabs);
+    if (this.props.uid !== this.props.visitorId) {
+      plugin.emitHook('interface_tab', InterfaceTabs);
+    }
 
     const tabs = (
       <Tabs

@@ -16,6 +16,8 @@ const HTTP_METHOD = constants.HTTP_METHOD;
 
 @connect(state => {
   return {
+    visitorId: state.user.visitorId,
+      uid: state.user.uid,
     curData: state.inter.curdata,
     custom_field: state.group.field,
     currProject: state.project.currProject
@@ -30,6 +32,8 @@ class View extends Component {
     };
   }
   static propTypes = {
+    visitorId: PropTypes.number,
+    uid: PropTypes.number,
     curData: PropTypes.object,
     currProject: PropTypes.object,
     custom_field: PropTypes.object
@@ -398,12 +402,20 @@ class View extends Component {
             </Col>
           </Row>
           <Row className="row">
-            <Col span={4} className="colKey">
-              状&emsp;&emsp;态：
-            </Col>
-            <Col span={8} className={'tag-status ' + this.props.curData.status}>
-              {status[this.props.curData.status]}
-            </Col>
+            {
+              this.props.uid !== this.props.visitorId ? (
+                <React.Fragment>
+                  <Col span={4} className="colKey">
+                    状&emsp;&emsp;态：
+                  </Col>
+                  <Col span={8} className={'tag-status ' + this.props.curData.status}>
+                    {status[this.props.curData.status]}
+                  </Col>
+                </React.Fragment>
+              ) : (
+                ''
+              )
+            }
             <Col span={4} className="colKey">
               更新时间：
             </Col>

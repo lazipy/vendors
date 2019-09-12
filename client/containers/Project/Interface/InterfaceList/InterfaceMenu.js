@@ -375,6 +375,7 @@ class InterfaceMenu extends Component {
           this.props.uid !== this.props.visitorId ? (
             <Button
               type="primary"
+              style={{ marginLeft: '16px' }}
               onClick={() => this.changeModal('add_cat_modal_visible', true)}
               className="btn-filter"
             >
