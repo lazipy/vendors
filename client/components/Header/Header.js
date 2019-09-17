@@ -322,12 +322,13 @@ export default class HeaderCom extends Component {
     return (
       <Header className="header-box m-header">
         <div className="content g-row">
+          
           <Link onClick={this.relieveLink} to="/group" className="logo">
-            <div className="href">
+            {/* <div className="href">
               <span className="img">
                 <LogoSVG length="32px" />
               </span>
-            </div>
+            </div> */}
           </Link>
           <Breadcrumb />
           <div
