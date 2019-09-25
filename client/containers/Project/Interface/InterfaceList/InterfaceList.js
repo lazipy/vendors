@@ -262,7 +262,7 @@ class InterfaceList extends Component {
               {this.props.catList.map(cat => {
                 return (
                   <Option key={cat.id + ''} value={cat._id + ''}>
-                    <span>{cat.name}</span>
+                    <span>{cat.desc}</span>
                   </Option>
                 );
               })}
@@ -375,7 +375,7 @@ class InterfaceList extends Component {
               {this.props.catList.map(cat => {
                 return (
                   <Option key={cat.id + ''} value={cat._id + ''}>
-                    <span>{cat.name}</span>
+                    <span>{cat.desc}</span>
                   </Option>
                 );
               })}
@@ -405,7 +405,7 @@ class InterfaceList extends Component {
     if (cat) {
       for (let i = 0; i < cat.length; i++) {
         if (cat[i]._id === this.state.catid) {
-          intername = cat[i].name;
+          intername = cat[i].desc;
           desc = cat[i].desc;
           break;
         }

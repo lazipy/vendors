@@ -101,7 +101,7 @@ class Interface extends Component {
           <div className="left-menu">
             <Tabs type="card" className="tabs-large" activeKey={activeKey} onChange={this.onChange}>
               <Tabs.TabPane tab="接口列表" key="api" />
-              <Tabs.TabPane tab="测试集合" key="colOrCase" />
+              {/* <Tabs.TabPane tab="测试集合" key="colOrCase" /> */}
             </Tabs>
             {activeKey === 'api' ? (
               <InterfaceMenu

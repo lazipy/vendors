@@ -583,7 +583,7 @@ class InterfaceMenu extends Component {
                           to={'/project/' + matchParams.id + '/interface/api/cat_' + item._id}
                         >
                           <Icon type="folder-open" style={{ marginRight: 5 }} />
-                          {item.name}
+                          {item.desc}
                         </Link>
                         <div className="btns">
                           <Tooltip title="删除分类">
