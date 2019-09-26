@@ -12,10 +12,12 @@ import Setting from './Setting/Setting.js';
 import Loading from '../../components/Loading/Loading';
 import ProjectMember from './Setting/ProjectMember/ProjectMember.js';
 import ProjectData from './Setting/ProjectData/ProjectData.js';
+import WikiView from './Wiki/View';
 const plugin = require('client/plugin.js');
 @connect(
   state => {
     return {
+      defaultProjectId: state.project.defaultProjectId,
       visitorId: state.user.visitorId,
       uid: state.user.uid,
       curProject: state.project.currProject,
@@ -33,6 +35,7 @@ export default class Project extends Component {
     visitorId: PropTypes.number,
     uid: PropTypes.number,
     match: PropTypes.object,
+    defaultProjectId: PropTypes.number,
     curProject: PropTypes.object,
     getProject: PropTypes.func,
     location: PropTypes.object,
@@ -90,7 +93,11 @@ export default class Project extends Component {
       interface: { name: '接口', path: '/project/:id/interface/:action', component: Interface }
     });
 
-    plugin.emitHook('sub_nav', routers);
+    if (this.props.defaultProjectId !== this.props.curProject._id) {
+      plugin.emitHook('sub_nav', routers);
+    } else {
+      routers.wiki = { name: 'Wiki', path: '/project/:id/wiki', component: WikiView }
+    }
 
     let key, defaultName;
     for (key in routers) {

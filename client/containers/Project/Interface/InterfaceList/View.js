@@ -20,6 +20,7 @@ const HTTP_METHOD = constants.HTTP_METHOD;
       uid: state.user.uid,
     curData: state.inter.curdata,
     custom_field: state.group.field,
+    defaultProjectId: state.project.defaultProjectId,
     currProject: state.project.currProject
   };
 })
@@ -35,6 +36,7 @@ class View extends Component {
     visitorId: PropTypes.number,
     uid: PropTypes.number,
     curData: PropTypes.object,
+    defaultProjectId: PropTypes.number,
     currProject: PropTypes.object,
     custom_field: PropTypes.object
   };
@@ -464,34 +466,42 @@ class View extends Component {
           </Row>
           <Row className="row">
             <Col span={4} className="colKey">
-              Mock地址：
+              接口地址：
             </Col>
-            <Col span={18} className="colValue">
-              {this.flagMsg(this.props.currProject.is_mock_open, this.props.currProject.strice)}
-              <span
-                className="href"
-                onClick={() =>
-                  window.open(
-                    location.protocol +
+            {
+              this.props.defaultProjectId === this.props.currProject._id ? (
+                <Col span={18} className="colValue">
+                  <span className="href">https://apikong.analysys.cn/qianfan</span>
+                </Col>
+              ) : (
+                <Col span={18} className="colValue">
+                  {this.flagMsg(this.props.currProject.is_mock_open, this.props.currProject.strice)}
+                  <span
+                    className="href"
+                    onClick={() =>
+                      window.open(
+                        location.protocol +
+                          '//' +
+                          location.hostname +
+                          (location.port !== '' ? ':' + location.port : '') +
+                          `/mock/${this.props.currProject._id}${this.props.currProject.basepath}${
+                            this.props.curData.path
+                          }`,
+                        '_blank'
+                      )
+                    }
+                  >
+                    {location.protocol +
                       '//' +
                       location.hostname +
                       (location.port !== '' ? ':' + location.port : '') +
                       `/mock/${this.props.currProject._id}${this.props.currProject.basepath}${
                         this.props.curData.path
-                      }`,
-                    '_blank'
-                  )
-                }
-              >
-                {location.protocol +
-                  '//' +
-                  location.hostname +
-                  (location.port !== '' ? ':' + location.port : '') +
-                  `/mock/${this.props.currProject._id}${this.props.currProject.basepath}${
-                    this.props.curData.path
-                  }`}
-              </span>
-            </Col>
+                      }`}
+                  </span>
+                </Col>
+              )
+            }
           </Row>
           {this.props.curData.custom_field_value &&
             this.props.custom_field.enable && (
