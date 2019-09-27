@@ -8,6 +8,8 @@ import { Link } from 'react-router-dom';
 
 @connect(state => {
   return {
+    visitorId: state.user.visitorId,
+    uid: state.user.uid,
     breadcrumb: state.user.breadcrumb
   };
 })
@@ -18,24 +20,32 @@ export default class BreadcrumbNavigation extends Component {
   }
 
   static propTypes = {
+    visitorId: PropTypes.number,
+    uid: PropTypes.number,
     breadcrumb: PropTypes.array
   };
 
   render() {
-    const getItem = this.props.breadcrumb.map((item, index) => {
-      if (item.href) {
-        return (
-          <Breadcrumb.Item key={index}>
-            <Link to={item.href}>{item.name}</Link>
-          </Breadcrumb.Item>
-        );
+    const getItem = () => {
+      if (this.props.uid === this.props.visitorId) {
+        return <Breadcrumb.Item key='易观千帆对外API接口文档'>易观千帆对外API接口文档</Breadcrumb.Item>;
       } else {
-        return <Breadcrumb.Item key={index}>{item.name}</Breadcrumb.Item>;
+        return this.props.breadcrumb.map((item, index) => {
+          if (item.href) {
+            return (
+              <Breadcrumb.Item key={index}>
+                <Link to={item.href}>{item.name}</Link>
+              </Breadcrumb.Item>
+            );
+          } else {
+            return <Breadcrumb.Item key={index}>{item.name}</Breadcrumb.Item>;
+          }
+        });
       }
-    });
+    }
     return (
       <div className="breadcrumb-container">
-        <Breadcrumb>{getItem}</Breadcrumb>
+        <Breadcrumb>{getItem()}</Breadcrumb>
       </div>
     );
   }

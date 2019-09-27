@@ -382,20 +382,6 @@ class InterfaceList extends Component {
             </Select>
           );
         }
-      },
-      {
-        title: 'tag',
-        dataIndex: 'tag',
-        key: 'tag',
-        width: 14,
-        render: text => {
-          let textMsg = text.length > 0 ? text.join('\n') : '未设置';
-          return <div className="table-desc">{textMsg}</div>;
-        },
-        filters: tagFilter,
-        onFilter: (value, record) => {
-          return record.tag.indexOf(value) >= 0;
-        }
       }
     ];
     let intername = '',

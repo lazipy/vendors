@@ -471,7 +471,7 @@ class View extends Component {
             {
               this.props.defaultProjectId === this.props.currProject._id ? (
                 <Col span={18} className="colValue">
-                  <span className="href">https://apikong.analysys.cn/qianfan</span>
+                  <span className="href">https://apikong.analysys.cn/qianfan{this.props.curData.path}</span>
                 </Col>
               ) : (
                 <Col span={18} className="colValue">
