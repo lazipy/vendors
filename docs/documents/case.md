@@ -91,7 +91,7 @@ $.{key}.{params|body}.{path}
 
 ### 1.assert
 
-断言函数，详细 api 可查看 <a target="_blank" href="https://nodejs.org/dist/latest-v8.x/docs/api/assert.html">document</a>
+断言函数，详细 api 可查看 <a target="_blank" href="https://nodejs.org/dist/latest-v8.x/docs/prd/api/assert.html">document</a>
 
 #### 常用 api
 

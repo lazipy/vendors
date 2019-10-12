@@ -88,7 +88,7 @@ pre-script, 通过自定义 js 脚本方式改变请求的参数和返回的 res
 
 ```
 {
-  url: '/api/user?id=1',
+  url: '/prd/api/user?id=1',
   method: 'POST',
   headers: {
     xxx: 'xxx'
@@ -103,7 +103,7 @@ pre-script, 通过自定义 js 脚本方式改变请求的参数和返回的 res
 
 ```
 context = {
-  pathname: '/api/user',
+  pathname: '/prd/api/user',
   query: {
     id: 1
   },
@@ -128,7 +128,7 @@ context.query.token = context.utils.md5(context.pathname + 'salt');
 在上面的示例请求完成后，假设返回 responseData={a:1},公共变量 context 包含以下属性：
 ```
 context = {
-  pathname: '/api/user',
+  pathname: '/prd/api/user',
   query: {
     id: 1
   },
@@ -209,7 +209,7 @@ console.log('decryptedData', decryptedData);
 
 ```javascript
 context.promise = new Promise(function(resolve) {
-  var api = context.utils.axios.get('http://yapi.local.qunar.com:3000/api/user/status');
+  var api = context.utils.axios.get('http://yapi.local.qunar.com:3000/prd/api/user/status');
   api.then(function(result) {
     //...
     console.log(result.data);

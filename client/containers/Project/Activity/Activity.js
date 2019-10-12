@@ -42,7 +42,7 @@ class Activity extends Component {
                   `/mock/${currProject._id}${currProject.basepath}/yourPath`}
               </p>
               <Button type="primary">
-                <a href={`/api/project/download?project_id=${this.props.match.params.id}`}>
+                <a href={`/prd/api/project/download?project_id=${this.props.match.params.id}`}>
                   下载Mock数据
                 </a>
               </Button>

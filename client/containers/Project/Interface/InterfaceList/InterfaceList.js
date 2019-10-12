@@ -107,7 +107,7 @@ class InterfaceList extends Component {
       desc: desc
     };
 
-    axios.post('/api/interface/up_cat', params).then(async res => {
+    axios.post('/prd/api/interface/up_cat', params).then(async res => {
       if (res.data.errcode !== 0) {
         return message.error(res.data.errmsg);
       }
@@ -147,7 +147,7 @@ class InterfaceList extends Component {
 
   handleAddInterface = data => {
     data.project_id = this.props.curProject._id;
-    axios.post('/api/interface/add', data).then(res => {
+    axios.post('/prd/api/interface/add', data).then(res => {
       if (res.data.errcode !== 0) {
         return message.error(`${res.data.errmsg}, 你可以在左侧的接口列表中对接口进行删改`);
       }
@@ -163,7 +163,7 @@ class InterfaceList extends Component {
       id: id,
       catid
     };
-    let result = await axios.post('/api/interface/up', params);
+    let result = await axios.post('/prd/api/interface/up', params);
     if (result.data.errcode === 0) {
       message.success('修改成功');
       this.handleRequest(this.props);
@@ -178,7 +178,7 @@ class InterfaceList extends Component {
       id: value.split('-')[0],
       status: value.split('-')[1]
     };
-    let result = await axios.post('/api/interface/up', params);
+    let result = await axios.post('/prd/api/interface/up', params);
     if (result.data.errcode === 0) {
       message.success('修改成功');
       this.handleRequest(this.props);

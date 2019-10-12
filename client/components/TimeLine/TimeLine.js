@@ -183,7 +183,7 @@ class TimeTree extends Component {
           <Timeline.Item
             dot={
               <Link to={`/user/profile/${item.uid}`}>
-                <Avatar src={`/api/user/avatar?uid=${item.uid}`} />
+                <Avatar src={`/prd/api/user/avatar?uid=${item.uid}`} />
               </Link>
             }
             key={i}

@@ -27,7 +27,7 @@ async function handle(
         if (findCat) {
           cat.id = findCat._id;
         } else {
-          let apipath = '/api/interface/add_cat';
+          let apipath = '/prd/api/interface/add_cat';
           if (isNode) {
             apipath = 'http://127.0.0.1:' + port + apipath;
           }
@@ -90,7 +90,7 @@ async function handle(
       if (dataSync !== 'normal') {
         // 开启同步功能
         count++;
-        let apipath = '/api/interface/save';
+        let apipath = '/prd/api/interface/save';
         if (isNode) {
           apipath = 'http://127.0.0.1:' + port + apipath;
         }
@@ -106,7 +106,7 @@ async function handle(
       } else {
         // 未开启同步功能
         count++;
-        let apipath = '/api/interface/add';
+        let apipath = '/prd/api/interface/add';
         if (isNode) {
           apipath = 'http://127.0.0.1:' + port + apipath;
         }

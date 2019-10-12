@@ -151,7 +151,7 @@ class InterfaceMenu extends Component {
 
   handleAddInterface = (data, cb) => {
     data.project_id = this.props.projectId;
-    axios.post('/api/interface/add', data).then(res => {
+    axios.post('/prd/api/interface/add', data).then(res => {
       if (res.data.errcode !== 0) {
         return message.error(res.data.errmsg);
       }
@@ -170,7 +170,7 @@ class InterfaceMenu extends Component {
 
   handleAddInterfaceCat = data => {
     data.project_id = this.props.projectId;
-    axios.post('/api/interface/add_cat', data).then(res => {
+    axios.post('/prd/api/interface/add_cat', data).then(res => {
       if (res.data.errcode !== 0) {
         return message.error(res.data.errmsg);
       }
@@ -192,7 +192,7 @@ class InterfaceMenu extends Component {
       desc: data.desc
     };
 
-    axios.post('/api/interface/up_cat', params).then(res => {
+    axios.post('/prd/api/interface/up_cat', params).then(res => {
       if (res.data.errcode !== 0) {
         return message.error(res.data.errmsg);
       }
@@ -259,7 +259,7 @@ class InterfaceMenu extends Component {
       draftData.path = draftData.path + '_' + Date.now();
     });
 
-    axios.post('/api/interface/add', newData).then(async res => {
+    axios.post('/prd/api/interface/add', newData).then(async res => {
       if (res.data.errcode !== 0) {
         return message.error(res.data.errmsg);
       }
@@ -315,9 +315,9 @@ class InterfaceMenu extends Component {
         // 同一个分类下的接口交换顺序
         let colList = list[dropCatIndex].list;
         let changes = arrayChangeIndex(colList, dragIndex, dropIndex);
-        axios.post('/api/interface/up_index', changes).then();
+        axios.post('/prd/api/interface/up_index', changes).then();
       } else {
-        await axios.post('/api/interface/up', { id, catid: dropCatId });
+        await axios.post('/prd/api/interface/up', { id, catid: dropCatId });
       }
       const { projectId, router } = this.props;
       this.props.fetchInterfaceListMenu(projectId);
@@ -330,7 +330,7 @@ class InterfaceMenu extends Component {
     } else {
       // 分类之间拖动
       let changes = arrayChangeIndex(list, dragIndex - 1, dropIndex - 1);
-      axios.post('/api/interface/up_cat_index', changes).then();
+      axios.post('/prd/api/interface/up_cat_index', changes).then();
       this.props.fetchInterfaceListMenu(this.props.projectId);
     }
   };

@@ -113,7 +113,7 @@ export default class Project extends Component {
 
     // let subnavData = [{
     //   name: routers.interface.name,
-    //   path: `/project/${match.params.id}/interface/api`
+    //   path: `/project/${match.params.id}/interface/prd/api`
     // }, {
     //   name: routers.activity.name,
     //   path: `/project/${match.params.id}/activity`

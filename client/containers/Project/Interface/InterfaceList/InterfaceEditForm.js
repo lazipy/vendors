@@ -420,7 +420,7 @@ class InterfaceEditForm extends Component {
     try {
       if (this.props.form.getFieldValue('res_body_is_json_schema')) {
         let schema = json5.parse(this.props.form.getFieldValue('res_body'));
-        let result = await axios.post('/api/interface/schema2json', {
+        let result = await axios.post('/prd/api/interface/schema2json', {
           schema: schema
         });
         return this.mockPreview.setValue(JSON.stringify(result.data));
@@ -795,7 +795,7 @@ class InterfaceEditForm extends Component {
       return requestBodyTpl(item, index);
     });
 
-    const DEMOPATH = '/api/user/{id}';
+    const DEMOPATH = '/prd/api/user/{id}';
 
     return (
       <div>

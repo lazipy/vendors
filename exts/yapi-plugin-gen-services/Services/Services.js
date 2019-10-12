@@ -44,7 +44,7 @@ export default class Services extends Component {
   `}</pre>
             <pre>{`
   {
-    "url": "${location.protocol}//${location.hostname}${location.port ? `:${location.port}` : ''}/api/open/plugin/export-full?type=json&pid=${id}&status=all&token=${this.props.token}",
+    "url": "${location.protocol}//${location.hostname}${location.port ? `:${location.port}` : ''}/prd/api/open/plugin/export-full?type=json&pid=${id}&status=all&token=${this.props.token}",
     "type": "yapi",
     "swaggerParser": {}
   }

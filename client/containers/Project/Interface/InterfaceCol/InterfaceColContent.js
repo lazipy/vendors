@@ -196,7 +196,7 @@ class InterfaceColContent extends Component {
       desc: desc
     };
 
-    axios.post('/api/col/up_col', params).then(async res => {
+    axios.post('/prd/api/col/up_col', params).then(async res => {
       if (res.data.errcode) {
         return message.error(res.data.errmsg);
       }
@@ -295,7 +295,7 @@ class InterfaceColContent extends Component {
       newRows[i] = curitem;
       this.setState({ rows: newRows });
     }
-    await axios.post('/api/col/up_col', {
+    await axios.post('/prd/api/col/up_col', {
       col_id: this.props.currColId,
       test_report: JSON.stringify(this.reports)
     });
@@ -387,7 +387,7 @@ class InterfaceColContent extends Component {
   handleScriptTest = async (interfaceData, response, validRes, requestParams) => {
     // 是否启动断言
     try {
-      let test = await axios.post('/api/col/run_script', {
+      let test = await axios.post('/prd/api/col/run_script', {
         response: response,
         records: this.records,
         script: interfaceData.test_script,
@@ -436,7 +436,7 @@ class InterfaceColContent extends Component {
     this.state.rows.forEach((item, index) => {
       changes.push({ id: item._id, index: index });
     });
-    axios.post('/api/col/up_case_index', changes).then(() => {
+    axios.post('/prd/api/col/up_case_index', changes).then(() => {
       this.props.fetchInterfaceColList(this.props.match.params.id);
     });
   };
@@ -516,7 +516,7 @@ class InterfaceColContent extends Component {
 
   handleAdvOk = async () => {
     const { curCaseid, enableScript, curScript } = this.state;
-    const res = await axios.post('/api/col/up_case', {
+    const res = await axios.post('/prd/api/col/up_case', {
       id: curCaseid,
       test_script: curScript,
       enable_script: enableScript
@@ -600,7 +600,7 @@ class InterfaceColContent extends Component {
     };
     console.log(params)
 
-    axios.post('/api/col/up_col', params).then(async res => {
+    axios.post('/prd/api/col/up_col', params).then(async res => {
       if (res.data.errcode) {
         return message.error(res.data.errmsg);
       }
@@ -803,7 +803,7 @@ class InterfaceColContent extends Component {
               let record = rowData;
               return (
                 <Tooltip title="跳转到对应接口">
-                  <Link to={`/project/${record.project_id}/interface/api/${record.interface_id}`}>
+                  <Link to={`/project/${record.project_id}/interface/prd/api/${record.interface_id}`}>
                     {record.path.length > 23 ? record.path + '...' : record.path}
                   </Link>
                 </Tooltip>
@@ -856,7 +856,7 @@ class InterfaceColContent extends Component {
       location.hostname +
       (location.port !== '' ? ':' + location.port : '');
     let currColEnvObj = this.handleColEnvObj(this.state.currColEnvObj);
-    const autoTestsUrl = `/api/open/run_auto_test?id=${this.props.currColId}&token=${
+    const autoTestsUrl = `/prd/api/open/run_auto_test?id=${this.props.currColId}&token=${
       this.props.token
     }${currColEnvObj ? currColEnvObj : ''}&mode=${this.state.mode}&email=${
       this.state.email

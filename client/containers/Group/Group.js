@@ -41,7 +41,7 @@ export default class Group extends Component {
   }
 
   async componentDidMount(){
-    let r = await axios.get('/api/group/get_mygroup')
+    let r = await axios.get('/prd/api/group/get_mygroup')
     try{
       let group = r.data.data;
       this.setState({

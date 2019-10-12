@@ -44,7 +44,7 @@ function CheckCrossInstall(props) {
                 </a>
               </div>
               <div>
-                <a target="blank" href="/api/interface/download_crx">
+                <a target="blank" href="/prd/api/interface/download_crx">
                   {' '}
                   [手动下载]{' '}
                 </a>

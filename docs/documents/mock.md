@@ -6,7 +6,7 @@
 
  假设你 YApi 的部署地址为：http://yapi.xxx.com 然后用这个地址作为示例
 
-    mockd 地址： http://yapi.xxx.com/mock/29/api/hackathon/login
+    mockd 地址： http://yapi.xxx.com/mock/29/prd/api/hackathon/login
 
  > 注：项目 id 可以在项目设置里查看到
  

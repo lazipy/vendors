@@ -99,7 +99,7 @@ module.exports = {
             },{
                 "name": "接口操作",
                 "index": "interface",
-                "content": "./doc/page/usage/api.md"
+                "content": "./doc/page/usage/prd/api.md"
             },{
                 "name": "普通 Mock",
                 "index": "mock",

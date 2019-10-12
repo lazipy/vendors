@@ -59,7 +59,7 @@ class InterfaceEdit extends Component {
 
   onSubmit = async params => {
     params.id = this.props.match.params.actionId;
-    let result = await axios.post('/api/interface/up', params);
+    let result = await axios.post('/prd/api/interface/up', params);
     this.props.fetchInterfaceListMenu(this.props.currProject._id).then();
     this.props.fetchInterfaceData(params.id).then();
     if (result.data.errcode === 0) {
@@ -102,7 +102,7 @@ class InterfaceEdit extends Component {
         wsProtocol +
           '://' +
           domain +
-          '/api/interface/solve_conflict?id=' +
+          '/prd/api/interface/solve_conflict?id=' +
           this.props.match.params.actionId
       );
       s.onopen = () => {
@@ -158,7 +158,7 @@ class InterfaceEdit extends Component {
       id,
       tag
     };
-    let result = await axios.post('/api/project/up_tag', params);
+    let result = await axios.post('/prd/api/project/up_tag', params);
 
     if (result.data.errcode === 0) {
       await this.props.getProject(id);

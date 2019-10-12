@@ -74,7 +74,7 @@ class Login extends Component {
 
   componentDidMount() {
     this.props.logoutActions()
-    //Qsso.attach('qsso-login','/api/user/login_by_token')
+    //Qsso.attach('qsso-login','/prd/api/user/login_by_token')
     console.log('isLDAP', this.props.isLDAP);
   }
   handleFormLayoutChange = e => {

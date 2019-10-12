@@ -91,7 +91,7 @@ export default class WikiView extends Component {
             <h2 id="accessToken">获取接口调用凭证accessToken</h2>
             <p>access_token是所有API的全局唯一接口调用凭据，第三方在调用各API接口时都需使用access_token。第三方开发者需要进行妥善保存。access_token的存储至少要保留256个字符空间。access_token的有效期目前为2个小时，需定时刷新，重复获取将导致上次获取的access_token失效。</p>
             <h3 id="get_token">1、获取access_token</h3>
-            <p>接口地址: <span className="href" onClick={() => window.open('https://apikong.analysys.cn/access/token/create') }>https://apikong.analysys.cn/access/token/create</span></p>
+            <p>接口地址: <span className="href" onClick={() => window.open('https://api/apikong.analysys.cn/access/token/create') }>https://api/apikong.analysys.cn/access/token/create</span></p>
             <p>请求方式：<Tag color="#108ee9">POST</Tag></p>
             <p>请求头：Content-Type：application/x-www-form-urlencoded</p>
             <p>请求参数</p>
@@ -108,7 +108,7 @@ export default class WikiView extends Component {
                   &nbsp;&nbsp;&quot;code&quot;: 0,<br />
                   &nbsp;&nbsp;&quot;msg&quot;: &quot;操作成功&quot;,<br />
                   &nbsp;&nbsp;&quot;datas&quot;: &#123;<br />
-                    &nbsp;&nbsp;&nbsp;&nbsp;&quot;accessToken&quot;: &quot;7eb643b17bd94358a332ba4ebfd76291&quot;,	//api接口调用凭证<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&quot;accessToken&quot;: &quot;7eb643b17bd94358a332ba4ebfd76291&quot;,	//api/api接口调用凭证<br />
                     &nbsp;&nbsp;&nbsp;&nbsp;&quot;accessTokenExpTime&quot;:7200,			       //accessToken凭证有效时间(单位：秒),默认2小时过期；如果即将过期，用户可通过refreshToken来重新获取<br />
                     &nbsp;&nbsp;&nbsp;&nbsp;&quot;refreshToken&quot;: &quot;5417AEB4730CD1D72B92A7D7931C86CA&quot;//刷AccessToken调用凭证，默认24小时过期<br />
                   &nbsp;&nbsp;&#125;<br />
@@ -116,7 +116,7 @@ export default class WikiView extends Component {
               </code>
             </pre>
             <h3 id="update_token">2、更新access_token</h3>
-            <p>接口地址: <span className="href" onClick={() => window.open('https://apikong.analysys.cn/access/token/refresh') }>https://apikong.analysys.cn/access/token/refresh</span></p>
+            <p>接口地址: <span className="href" onClick={() => window.open('https://api/apikong.analysys.cn/access/token/refresh') }>https://api/apikong.analysys.cn/access/token/refresh</span></p>
             <p>请求方式：<Tag color="#108ee9">POST</Tag></p>
             <p>请求头：Content-Type：application/x-www-form-urlencoded</p>
             <p>请求参数</p>
@@ -133,7 +133,7 @@ export default class WikiView extends Component {
                   &nbsp;&nbsp;&quot;code&quot;: 0,<br />
                   &nbsp;&nbsp;&quot;msg&quot;: &quot;操作成功&quot;,<br />
                   &nbsp;&nbsp;&quot;datas&quot;: &#123;<br />
-                    &nbsp;&nbsp;&nbsp;&nbsp;&quot;accessToken&quot;: &quot;7eb643b17bd94358a332ba4ebfd76291&quot;,	//api接口调用凭证<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&quot;accessToken&quot;: &quot;7eb643b17bd94358a332ba4ebfd76291&quot;,	//api/api接口调用凭证<br />
                     &nbsp;&nbsp;&nbsp;&nbsp;&quot;accessTokenExpTime&quot;:7200,			       //accessToken凭证有效时间(单位：秒),默认2小时过期；如果即将过期，用户可通过refreshToken来重新获取<br />
                     &nbsp;&nbsp;&nbsp;&nbsp;&quot;refreshToken&quot;: &quot;5417AEB4730CD1D72B92A7D7931C86CA&quot;//刷AccessToken调用凭证，默认24小时过期<br />
                   &nbsp;&nbsp;&#125;<br />
@@ -143,7 +143,7 @@ export default class WikiView extends Component {
             <h3 id="speed">3、API接口调用次数速率控制</h3>
             <p>目前每个用户对每个API的调用次数会有一定限制，目前每分钟、每小时、每天都会有限制，超过次数状态码会返回42501（too many requests）</p>
             <h3 id="rule">4、API调用协议规则</h3>
-            <p>所有的API调用必须在原有URL后拼接上具体的access_token； 即：<span className="href">http://apikong.analysys.cn/XXXXX?accessToken=7eb643b17bd94358a332ba4ebfd76291</span></p>
+            <p>所有的API调用必须在原有URL后拼接上具体的access_token； 即：<span className="href">http://api/apikong.analysys.cn/XXXXX?accessToken=7eb643b17bd94358a332ba4ebfd76291</span></p>
 
             <h2 id="interface-intro">千帆API接口调用说明</h2>
             <h3 id="keyword">1、分析对象关键字解释</h3>

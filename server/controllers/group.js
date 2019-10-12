@@ -121,7 +121,7 @@ class groupController extends baseController {
    * @param {String} [group_desc] 项目分组描述
    * @param {String} [owner_uids]  组长[uid]
    * @returns {Object}
-   * @example ./api/group/add.json
+   * @example ./prd/api/group/add.json
    */
   async add(ctx) {
     let params = ctx.params;
@@ -396,7 +396,7 @@ class groupController extends baseController {
    * @category group
    * @foldnumber 10
    * @returns {Object}
-   * @example ./api/group/list.json
+   * @example ./prd/api/group/list.json
    */
   async list(ctx) {
     var groupInst = yapi.getInst(groupModel);
@@ -468,7 +468,7 @@ class groupController extends baseController {
    * @category group
    * @foldnumber 10
    * @returns {Object}
-   * @example ./api/group/del.json
+   * @example ./prd/api/group/del.json
    */
   async del(ctx) {
     if (this.getRole() !== 'admin') {
@@ -506,7 +506,7 @@ class groupController extends baseController {
    * @category group
    * @foldnumber 10
    * @returns {Object}
-   * @example ./api/group/up.json
+   * @example ./prd/api/group/up.json
    */
   async up(ctx) {
     let groupInst = yapi.getInst(groupModel);

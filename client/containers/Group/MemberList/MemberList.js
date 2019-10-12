@@ -198,7 +198,7 @@ class MemberList extends Component {
               <Link to={`/user/profile/${record.uid}`}>
                 <img
                   src={
-                    location.protocol + '//' + location.host + '/api/user/avatar?uid=' + record.uid
+                    location.protocol + '//' + location.host + '/prd/api/user/avatar?uid=' + record.uid
                   }
                   className="m-user-img"
                 />

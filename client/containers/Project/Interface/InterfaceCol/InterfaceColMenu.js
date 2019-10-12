@@ -132,9 +132,9 @@ export default class InterfaceColMenu extends Component {
     const project_id = this.props.match.params.id;
     let res = {};
     if (colModalType === 'add') {
-      res = await axios.post('/api/col/add_col', { name, desc, project_id });
+      res = await axios.post('/prd/api/col/add_col', { name, desc, project_id });
     } else if (colModalType === 'edit') {
-      res = await axios.post('/api/col/up_col', { name, desc, col_id });
+      res = await axios.post('/prd/api/col/up_col', { name, desc, col_id });
     }
     if (!res.data.errcode) {
       this.setState({
@@ -183,7 +183,7 @@ export default class InterfaceColMenu extends Component {
       okText: '确认',
       cancelText: '取消',
       async onOk() {
-        const res = await axios.get('/api/col/del_col?col_id=' + colId);
+        const res = await axios.get('/prd/api/col/del_col?col_id=' + colId);
         if (!res.data.errcode) {
           message.success('删除集合成功');
           const result = await that.getList();
@@ -208,7 +208,7 @@ export default class InterfaceColMenu extends Component {
     name = `${name} copy`;
 
     // 添加集合
-    const add_col_res = await axios.post('/api/col/add_col', { name, desc, project_id });
+    const add_col_res = await axios.post('/prd/api/col/add_col', { name, desc, project_id });
 
     if (add_col_res.data.errcode) {
       message.error(add_col_res.data.errmsg);
@@ -218,7 +218,7 @@ export default class InterfaceColMenu extends Component {
     const new_col_id = add_col_res.data.data._id;
 
     // 克隆集合
-    const add_case_list_res = await axios.post('/api/col/clone_case_list', {
+    const add_case_list_res = await axios.post('/prd/api/col/clone_case_list', {
       new_col_id,
       col_id,
       project_id
@@ -250,7 +250,7 @@ export default class InterfaceColMenu extends Component {
     data = JSON.parse(JSON.stringify(data));
     data.casename=`${data.casename}_copy`
     delete data._id 
-    const res = await axios.post('/api/col/add_case',data);
+    const res = await axios.post('/prd/api/col/add_case',data);
       if (!res.data.errcode) {
         message.success('克隆用例成功');
         let colId = res.data.data.col_id;
@@ -273,7 +273,7 @@ export default class InterfaceColMenu extends Component {
       okText: '确认',
       cancelText: '取消',
       async onOk() {
-        const res = await axios.get('/api/col/del_case?caseid=' + caseId);
+        const res = await axios.get('/prd/api/col/del_case?caseid=' + caseId);
         if (!res.data.errcode) {
           message.success('删除用例成功');
           that.getList();
@@ -320,7 +320,7 @@ export default class InterfaceColMenu extends Component {
   handleImportOk = async () => {
     const project_id = this.state.selectedProject || this.props.match.params.id;
     const { importColId, importInterIds } = this.state;
-    const res = await axios.post('/api/col/add_case_list', {
+    const res = await axios.post('/prd/api/col/add_case_list', {
       interface_list: importInterIds,
       col_id: importColId,
       project_id
@@ -371,15 +371,15 @@ export default class InterfaceColMenu extends Component {
         // 同一个测试集合下的接口交换顺序
         let caseList = interfaceColList[dropColIndex].caseList;
         let changes = arrayChangeIndex(caseList, dragIndex, dropIndex);
-        axios.post('/api/col/up_case_index', changes).then();
+        axios.post('/prd/api/col/up_case_index', changes).then();
       }
-      await axios.post('/api/col/up_case', { id: id.split('_')[1], col_id: dropColId });
+      await axios.post('/prd/api/col/up_case', { id: id.split('_')[1], col_id: dropColId });
       // this.props.fetchInterfaceColList(projectId);
       this.getList();
       this.props.setColData({ isRander: true });
     } else {
       let changes = arrayChangeIndex(interfaceColList, dragIndex, dropIndex);
-      axios.post('/api/col/up_col_index', changes).then();
+      axios.post('/prd/api/col/up_col_index', changes).then();
       this.getList();
     }
   };

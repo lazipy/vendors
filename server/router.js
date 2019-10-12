@@ -589,13 +589,13 @@ function addPluginRouter(config) {
   }
   let method = config.method || 'GET';
   // let routerPath = '/plugin/' + config.path;
-  // 支持 /api/open/plugin 前缀的 openApi
+  // 支持 /prd/api/open/plugin 前缀的 openApi
   let routerPath = (config.prefix || '') + '/plugin/' + config.path;
   if (pluginsRouterPath.indexOf(routerPath) > -1) {
     throw new Error('Plugin Route path conflict, please try rename the path');
   }
   pluginsRouterPath.push(routerPath);
-  createAction(router, '/api', config.controller, config.action, routerPath, method, false);
+  createAction(router, '/prd/api', config.controller, config.action, routerPath, method, false);
 }
 
 yapi.emitHookSync('add_router', addPluginRouter);
@@ -605,7 +605,7 @@ for (let ctrl in routerConfig) {
   actions.forEach(item => {
     let routerController = INTERFACE_CONFIG[ctrl].controller;
     let routerPath = INTERFACE_CONFIG[ctrl].prefix + item.path;
-    createAction(router, '/api', routerController, item.action, routerPath, item.method);
+    createAction(router, '/prd/api', routerController, item.action, routerPath, item.method);
   });
 }
 

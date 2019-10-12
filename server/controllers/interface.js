@@ -194,7 +194,7 @@ class interfaceController extends baseController {
    * @param {String} [res_body] 响应信息，可填写任意字符串，如果res_body_type是json,则会调用mock功能
    * @param  {String} [desc] 接口描述
    * @returns {Object}
-   * @example ./api/interface/add.json
+   * @example ./prd/api/interface/add.json
    */
   async add(ctx) {
     let params = ctx.params;
@@ -282,9 +282,9 @@ class interfaceController extends baseController {
       let username = this.getUsername();
       let title = `<a href="/user/profile/${this.getUid()}">${username}</a> 为分类 <a href="/project/${
         params.project_id
-      }/interface/api/cat_${params.catid}">${cate.name}</a> 添加了接口 <a href="/project/${
+      }/interface/prd/api/cat_${params.catid}">${cate.name}</a> 添加了接口 <a href="/project/${
         params.project_id
-      }/interface/api/${result._id}">${data.title}</a> `;
+      }/interface/prd/api/${result._id}">${data.title}</a> `;
 
       yapi.commons.saveLog({
         content: title,
@@ -395,7 +395,7 @@ class interfaceController extends baseController {
    * @foldnumber 10
    * @param {Number}   id 接口id，不能为空
    * @returns {Object}
-   * @example ./api/interface/get.json
+   * @example ./prd/api/interface/get.json
    */
   async get(ctx) {
     let params = ctx.params;
@@ -443,7 +443,7 @@ class interfaceController extends baseController {
    * @param {Number}   page 当前页
    * @param {Number}   limit 每一页限制条数
    * @returns {Object}
-   * @example ./api/interface/list.json
+   * @example ./prd/api/interface/list.json
    */
   async list(ctx) {
     let project_id = ctx.params.project_id;
@@ -622,7 +622,7 @@ class interfaceController extends baseController {
    * @param {String} [res_body] 响应信息，可填写任意字符串，如果res_body_type是json,则会调用mock功能
    * @param  {String} [desc] 接口描述
    * @returns {Object}
-   * @example ./api/interface/up.json
+   * @example ./prd/api/interface/up.json
    */
 
   async up(ctx) {
@@ -725,10 +725,10 @@ class interfaceController extends baseController {
       }
       yapi.commons.saveLog({
         content: `<a href="/user/profile/${this.getUid()}">${username}</a> 
-                    更新了分类 <a href="/project/${cate.project_id}/interface/api/cat_${
+                    更新了分类 <a href="/project/${cate.project_id}/interface/prd/api/cat_${
           data.catid
         }">${cate.name}</a> 
-                    下的接口 <a href="/project/${cate.project_id}/interface/api/${id}">${
+                    下的接口 <a href="/project/${cate.project_id}/interface/prd/api/${id}">${
           interfaceData.title
         }</a><p>${params.message}</p>`,
         type: 'project',
@@ -758,7 +758,7 @@ class interfaceController extends baseController {
 
       let interfaceUrl = `${ctx.request.origin}/project/${
         interfaceData.project_id
-      }/interface/api/${id}`;
+      }/interface/prd/api/${id}`;
 
       yapi.commons.sendNotice(interfaceData.project_id, {
         title: `${username} 更新了接口`,
@@ -807,7 +807,7 @@ class interfaceController extends baseController {
    * @foldnumber 10
    * @param {Number}   id 接口id，不能为空
    * @returns {Object}
-   * @example ./api/interface/del.json
+   * @example ./prd/api/interface/del.json
    */
 
   async del(ctx) {
@@ -836,7 +836,7 @@ class interfaceController extends baseController {
         yapi.commons.saveLog({
           content: `<a href="/user/profile/${this.getUid()}">${username}</a> 删除了分类 <a href="/project/${
             cate.project_id
-          }/interface/api/cat_${data.catid}">${cate.name}</a> 下的接口 "${data.title}"`,
+          }/interface/prd/api/cat_${data.catid}">${cate.name}</a> 下的接口 "${data.title}"`,
           type: 'project',
           uid: this.getUid(),
           username: username,
@@ -921,7 +921,7 @@ class interfaceController extends baseController {
       yapi.commons.saveLog({
         content: `<a href="/user/profile/${this.getUid()}">${username}</a> 添加了分类  <a href="/project/${
           params.project_id
-        }/interface/api/cat_${result._id}">${params.name}</a>`,
+        }/interface/prd/api/cat_${result._id}">${params.name}</a>`,
         type: 'project',
         uid: this.getUid(),
         username: username,
@@ -955,7 +955,7 @@ class interfaceController extends baseController {
       yapi.commons.saveLog({
         content: `<a href="/user/profile/${this.getUid()}">${username}</a> 更新了分类 <a href="/project/${
           cate.project_id
-        }/interface/api/cat_${params.catid}">${cate.name}</a>`,
+        }/interface/prd/api/cat_${params.catid}">${cate.name}</a>`,
         type: 'project',
         uid: this.getUid(),
         username: username,
@@ -1020,7 +1020,7 @@ class interfaceController extends baseController {
    * @foldnumber 10
    * @param {Number}   project_id 项目id，不能为空
    * @returns {Object}
-   * @example ./api/interface/getCatMenu
+   * @example ./prd/api/interface/getCatMenu
    */
 
   async getCatMenu(ctx) {

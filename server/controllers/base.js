@@ -23,13 +23,13 @@ class baseController {
     this.tokenModel = yapi.getInst(tokenModel);
     this.projectModel = yapi.getInst(projectModel);
     let ignoreRouter = [
-      '/api/user/login_by_token',
-      '/api/user/login',
-      '/api/user/reg',
-      '/api/user/status',
-      '/api/user/logout',
-      '/api/user/avatar',
-      '/api/user/login_by_ldap'
+      '/prd/api/user/login_by_token',
+      '/prd/api/user/login',
+      '/prd/api/user/reg',
+      '/prd/api/user/status',
+      '/prd/api/user/logout',
+      '/prd/api/user/avatar',
+      '/prd/api/user/login_by_ldap'
     ];
     if (ignoreRouter.indexOf(ctx.path) > -1) {
       this.$auth = true;
@@ -38,26 +38,26 @@ class baseController {
     }
 
     let openApiRouter = [
-      '/api/open/run_auto_test',
-      '/api/open/import_data',
-			'/api/interface/add',
-			'/api/interface/save',
-			'/api/interface/up',
-			'/api/interface/get',
-			'/api/interface/list',
-			'/api/interface/list_menu',
-			'/api/interface/add_cat',
-      '/api/interface/getCatMenu',
-      '/api/interface/list_cat',
-      '/api/project/get',
-      '/api/plugin/export'
+      '/prd/api/open/run_auto_test',
+      '/prd/api/open/import_data',
+			'/prd/api/interface/add',
+			'/prd/api/interface/save',
+			'/prd/api/interface/up',
+			'/prd/api/interface/get',
+			'/prd/api/interface/list',
+			'/prd/api/interface/list_menu',
+			'/prd/api/interface/add_cat',
+      '/prd/api/interface/getCatMenu',
+      '/prd/api/interface/list_cat',
+      '/prd/api/project/get',
+      '/prd/api/plugin/export'
     ];
 
     let params = Object.assign({}, ctx.query, ctx.request.body);
     let token = params.token;
 
-    // 如果前缀是 /api/open，执行 parse token 逻辑
-    if (token && (openApiRouter.indexOf(ctx.path) > -1 || ctx.path.indexOf('/api/open/') === 0 )) {
+    // 如果前缀是 /prd/api/open，执行 parse token 逻辑
+    if (token && (openApiRouter.indexOf(ctx.path) > -1 || ctx.path.indexOf('/prd/api/open/') === 0 )) {
       let tokens = parseToken(token)
 
       const oldTokenUid = '999999'
@@ -87,7 +87,7 @@ class baseController {
       }
       let projectData = await this.projectModel.get(checkId);
       if (projectData) {
-        ctx.query.pid = checkId; // 兼容：/api/plugin/export
+        ctx.query.pid = checkId; // 兼容：/prd/api/plugin/export
         ctx.params.project_id = checkId;
         this.$tokenAuth = true;
         this.$uid = tokenUid;

@@ -46,7 +46,7 @@ function handleExportRouteParams(url, status, isWiki) {
 
 // exportDataModule.pdf = {
 //   name: 'Pdf',
-//   route: '/api/interface/download_crx',
+//   route: '/prd/api/interface/download_crx',
 //   desc: '导出项目接口文档为 pdf 文件'
 // }
 @connect(
@@ -92,7 +92,7 @@ class ProjectData extends Component {
   };
 
   componentWillMount() {
-    axios.get(`/api/interface/getCatMenu?project_id=${this.props.match.params.id}`).then(data => {
+    axios.get(`/prd/api/interface/getCatMenu?project_id=${this.props.match.params.id}`).then(data => {
       if (data.data.errcode === 0) {
         let menuList = data.data.data;
         this.setState({
@@ -298,7 +298,7 @@ class ProjectData extends Component {
       name: 'interfaceData',
       multiple: true,
       showUploadList: false,
-      action: '/api/interface/interUpload',
+      action: '/prd/api/interface/interUpload',
       customRequest: this.handleFile,
       onChange: this.uploadChange
     };

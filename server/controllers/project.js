@@ -184,7 +184,7 @@ class projectController extends baseController {
    * @param {String} project_type private public
    * @param  {String} [desc] 项目描述
    * @returns {Object}
-   * @example ./api/project/add.json
+   * @example ./prd/api/project/add.json
    */
   async add(ctx) {
     let params = ctx.params;
@@ -276,7 +276,7 @@ class projectController extends baseController {
    * @param {String} project_type private public
    * @param  {String} [desc] 项目描述
    * @returns {Object}
-   * @example ./api/project/add.json
+   * @example ./prd/api/project/add.json
    */
   async copy(ctx) {
     try {
@@ -390,7 +390,7 @@ class projectController extends baseController {
    * @param {Number} id 项目id，不能为空
    * @param {Array} member_uid 项目成员uid,不能为空
    * @returns {Object}
-   * @example ./api/project/add_member.json
+   * @example ./prd/api/project/add_member.json
    */
   async addMember(ctx) {
     let params = ctx.params;
@@ -446,7 +446,7 @@ class projectController extends baseController {
    * @param {Number} id 项目id，不能为空
    * @param {member_uid} uid 项目成员uid,不能为空
    * @returns {Object}
-   * @example ./api/project/del_member.json
+   * @example ./prd/api/project/del_member.json
    */
 
   async delMember(ctx) {
@@ -492,7 +492,7 @@ class projectController extends baseController {
    * @foldnumber 10
    * @param {Number} id 项目id，不能为空
    * @return {Object}
-   * @example ./api/project/get_member_list.json
+   * @example ./prd/api/project/get_member_list.json
    */
 
   async getMemberList(ctx) {
@@ -513,7 +513,7 @@ class projectController extends baseController {
    * @foldnumber 10
    * @param {Number} id 项目id，不能为空
    * @returns {Object}
-   * @example ./api/project/get.json
+   * @example ./prd/api/project/get.json
    */
 
   async get(ctx) {
@@ -550,7 +550,7 @@ class projectController extends baseController {
    * @foldnumber 10
    * @param {Number} group_id 项目group_id，不能为空
    * @returns {Object}
-   * @example ./api/project/list.json
+   * @example ./prd/api/project/list.json
    */
 
   async list(ctx) {
@@ -609,7 +609,7 @@ class projectController extends baseController {
    * @foldnumber 10
    * @param {Number} id 项目id，不能为空
    * @returns {Object}
-   * @example ./api/project/del.json
+   * @example ./prd/api/project/del.json
    */
 
   async del(ctx) {
@@ -723,7 +723,7 @@ class projectController extends baseController {
    * @param {String} icon 项目icon
    * @param {Array} color 项目color
    * @returns {Object}
-   * @example ./api/project/upset
+   * @example ./prd/api/project/upset
    */
   async upSet(ctx) {
     let id = ctx.request.body.id;
@@ -769,7 +769,7 @@ class projectController extends baseController {
    * @param {String} basepath 项目基本路径，不能为空
    * @param {String} [desc] 项目描述
    * @returns {Object}
-   * @example ./api/project/up.json
+   * @example ./prd/api/project/up.json
    */
   async up(ctx) {
     try {
@@ -822,7 +822,7 @@ class projectController extends baseController {
       let result = await this.Model.up(id, data);
       let username = this.getUsername();
       yapi.commons.saveLog({
-        content: `<a href="/user/profile/${this.getUid()}">${username}</a> 更新了项目 <a href="/project/${id}/interface/api">${
+        content: `<a href="/user/profile/${this.getUid()}">${username}</a> 更新了项目 <a href="/project/${id}/interface/prd/api">${
           projectData.name
         }</a>`,
         type: 'project',
@@ -880,7 +880,7 @@ class projectController extends baseController {
       let result = await this.Model.up(id, data);
       let username = this.getUsername();
       yapi.commons.saveLog({
-        content: `<a href="/user/profile/${this.getUid()}">${username}</a> 更新了项目 <a href="/project/${id}/interface/api">${
+        content: `<a href="/user/profile/${this.getUid()}">${username}</a> 更新了项目 <a href="/project/${id}/interface/prd/api">${
           projectData.name
         }</a> 的环境`,
         type: 'project',
@@ -932,7 +932,7 @@ class projectController extends baseController {
       let result = await this.Model.up(id, data);
       let username = this.getUsername();
       yapi.commons.saveLog({
-        content: `<a href="/user/profile/${this.getUid()}">${username}</a> 更新了项目 <a href="/project/${id}/interface/api">${
+        content: `<a href="/user/profile/${this.getUid()}">${username}</a> 更新了项目 <a href="/project/${id}/interface/prd/api">${
           projectData.name
         }</a> 的tag`,
         type: 'project',
@@ -1062,7 +1062,7 @@ class projectController extends baseController {
    * @foldnumber 10
    * @param {String} q
    * @return {Object}
-   * @example ./api/project/search.json
+   * @example ./prd/api/project/search.json
    */
   async search(ctx) {
     const { q } = ctx.request.query;

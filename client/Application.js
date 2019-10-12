@@ -2,7 +2,7 @@ import React, { PureComponent as Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Route, BrowserRouter as Router } from 'react-router-dom';
+import { Route, HashRouter as Router } from 'react-router-dom';
 import { Home, Group, Project, Follows, AddProject, Login } from './containers/index';
 import { Alert } from 'antd';
 import User from './containers/User/User.js';
@@ -97,7 +97,7 @@ export default class App extends Component {
 
   showConfirm = (msg, callback) => {
     // 自定义 window.confirm
-    // http://reacttraining.cn/web/api/BrowserRouter/getUserConfirmation-func
+    // http://reacttraining.cn/web/prd/api/BrowserRouter/getUserConfirmation-func
     let container = document.createElement('div');
     document.body.appendChild(container);
     ReactDOM.render(<MyPopConfirm msg={msg} callback={callback} />, container);

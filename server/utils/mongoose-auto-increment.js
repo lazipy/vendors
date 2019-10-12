@@ -121,7 +121,7 @@ exports.plugin = function (schema, options) {
     // Get reference to the document being saved.
     var doc = this;
 
-    // Only do this if it is a new document (see http://mongoosejs.com/docs/api.html#document_Document-isNew)
+    // Only do this if it is a new document (see http://mongoosejs.com/docs/prd/api.html#document_Document-isNew)
     if (doc.isNew) {
       // Declare self-invoking save function.
       (function save() {

@@ -25,7 +25,7 @@ class userController extends baseController {
    * @param {String} email email名称，不能为空
    * @param  {String} password 密码，不能为空
    * @returns {Object}
-   * @example ./api/user/login.json
+   * @example ./prd/api/user/login.json
    */
   async login(ctx) {
     //登录
@@ -73,7 +73,7 @@ class userController extends baseController {
    * @category user
    * @foldnumber 10
    * @returns {Object}
-   * @example ./api/user/logout.json
+   * @example ./prd/api/user/logout.json
    */
 
   async logout(ctx) {
@@ -216,7 +216,7 @@ class userController extends baseController {
    * @param {Number} [old_password] 旧密码, 非admin用户必须传
    * @param {Number} password 新密码
    * @return {Object}
-   * @example ./api/user/change_password.json
+   * @example ./prd/api/user/change_password.json
    */
   async changePassword(ctx) {
     let params = ctx.request.body;
@@ -293,7 +293,7 @@ class userController extends baseController {
    * @param  {String} password 密码，不能为空
    * @param {String} [username] 用户名
    * @returns {Object}
-   * @example ./api/user/login.json
+   * @example ./prd/api/user/login.json
    */
   async reg(ctx) {
     //注册
@@ -618,7 +618,7 @@ class userController extends baseController {
    * @foldnumber 10
    * @param {String} q
    * @return {Object}
-   * @example ./api/user/search.json
+   * @example ./prd/api/user/search.json
    */
   async search(ctx) {
     const { q } = ctx.request.query;

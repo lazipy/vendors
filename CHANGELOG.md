@@ -42,7 +42,7 @@
 ### v1.5.12  （存在bug）
 * 废弃 v1.6.x 新增功能，因为有不可控的bug出现
 * 支持项目设置 hook
-* 开放api 新增 '/api/plugin/export'
+* 开放api 新增 '/prd/api/plugin/export'
 * 接口运行部分请求参数默认使用示例填写值
 
 ### v1.5.10
@@ -58,20 +58,20 @@
 * feat: add jsrsasign Lib
 
 ### v1.5.6
-* 修复 /api/open/import_data 参数bug
-* 修复  /api/open/import_data 文档错误，merge 参数误写为 dataSync
+* 修复 /prd/api/open/import_data 参数bug
+* 修复  /prd/api/open/import_data 文档错误，merge 参数误写为 dataSync
 
 ### v1.5.5
 * cross-request 升级到 2.10
-* /api/open/import_data 新增 url 参数，支持服务端 url 导入
+* /prd/api/open/import_data 新增 url 参数，支持服务端 url 导入
 
 ### v1.5.2
-* 新增 openapi `/api/project/get`，可获取项目基本信息
+* 新增 openapi `/prd/api/project/get`，可获取项目基本信息
 
 ### v1.5.1
 
 * 优化 restful api 动态路由权重匹配算法，匹配更加精确
-* openapi 新增 `/api/interface/list_cat`，获取某个分类下所有接口
+* openapi 新增 `/prd/api/interface/list_cat`，获取某个分类下所有接口
 * 新增了 rap数据导入到 yapi 插件 [rap2yapi](https://github.com/wxxcarl/yapi-plugin-import-rap)
 
 ### v1.5.0

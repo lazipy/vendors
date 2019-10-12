@@ -71,7 +71,7 @@ export default class ProjectInterfaceSync extends Component {
     form.validateFields(async (err, values) => {
       if (!err) {
         let assignValue = Object.assign(params, values);
-        await axios.post('/api/plugin/autoSync/save', assignValue).then(res => {
+        await axios.post('/prd/api/plugin/autoSync/save', assignValue).then(res => {
           if (res.data.errcode === 0) {
             message.success('保存成功');
           } else {
@@ -106,7 +106,7 @@ export default class ProjectInterfaceSync extends Component {
 
   async getSyncData() {
     let projectId = this.props.projectMsg._id;
-    let result = await axios.get('/api/plugin/autoSync/get?project_id=' + projectId);
+    let result = await axios.get('/prd/api/plugin/autoSync/get?project_id=' + projectId);
     if (result.data.errcode === 0) {
       if (result.data.data) {
         this.setState({

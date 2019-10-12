@@ -18,12 +18,12 @@ function addPluginRouter(config) {
     throw new Error('Plugin Route path conflict, please try rename the path')
   }
   pluginsRouterPath.push(routerPath);
-  createAction(router, "/api", config.controller, config.action, routerPath, method, true);
+  createAction(router, "/prd/api", config.controller, config.action, routerPath, method, true);
 }
 
 
 function websocket(app) {
-  createAction(router, "/api", interfaceController, "solveConflict", "/interface/solve_conflict", "get")
+  createAction(router, "/prd/api", interfaceController, "solveConflict", "/interface/solve_conflict", "get")
 
   yapi.emitHookSync('add_ws_router', addPluginRouter);
 

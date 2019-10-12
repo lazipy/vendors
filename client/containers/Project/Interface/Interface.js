@@ -37,7 +37,7 @@ const InterfaceRoute = props => {
     C = InterfaceCaseContent;
   } else {
     const params = props.match.params;
-    props.history.replace('/project/' + params.id + '/interface/api');
+    props.history.replace('/project/' + params.id + '/interface/prd/api');
     return null;
   }
   return <C {...props} />;

@@ -40,12 +40,12 @@
 
 - 点击左侧接口分组右侧的菜单按钮，选择 `添加接口`，或者点击接口列表右上角的 `添加接口`。
 
-<img src="./images/usage/api_add_btn.png" />
+<img src="./images/usage/prd/api_add_btn.png" />
 
 - 选择接口分类，输入接口名称和接口路径，点击 `提交`。
 
-<img src="./images/usage/api_add_panel.png" />
+<img src="./images/usage/prd/api_add_panel.png" />
 
 - 恭喜你！创建了第一个YApi的接口，你可以看到在左侧看到接口名称，右侧有该接口的信息预览。
 
-<img src="./images/usage/api_res.png" />
+<img src="./images/usage/prd/api_res.png" />
